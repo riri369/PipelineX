@@ -6,7 +6,7 @@
 
 ---
 
-# 📖 Overview
+# Overview
 
 PipelineX is a production-inspired CI/CD automation platform built to simulate how modern software delivery pipelines operate in enterprise environments. Rather than demonstrating isolated DevOps tools, PipelineX focuses on how these technologies work together to create a reliable, automated, and resilient deployment ecosystem.
 
@@ -18,7 +18,7 @@ PipelineX has been designed with extensibility in mind, allowing future integrat
 
 ---
 
-# 🎯 Objectives
+# Objectives
 
 PipelineX is designed to achieve the following objectives:
 
@@ -33,7 +33,7 @@ PipelineX is designed to achieve the following objectives:
 
 ---
 
-# 🏗 Architecture
+# Architecture
 
 ```text
                     Developer
@@ -81,7 +81,7 @@ Grafana
 
 ---
 
-# ⚙️ Technology Stack
+# Technology Stack
 
 | Category | Technology |
 |-----------|------------|
@@ -98,7 +98,7 @@ Grafana
 
 ---
 
-# 📂 Repository Structure
+# Repository Structure
 
 ```text
 PipelineX/
@@ -134,7 +134,7 @@ PipelineX/
 
 ---
 
-# 🔄 CI/CD Workflow
+# CI/CD Workflow
 
 PipelineX follows a fully automated deployment pipeline.
 
@@ -197,7 +197,7 @@ If deployment validation fails, Kubernetes automatically restores the previously
 
 ---
 
-# 🔥 Jenkins Pipeline Stages
+# Jenkins Pipeline Stages
 
 ```text
 Checkout Source
@@ -229,7 +229,7 @@ Deployment Complete
 
 ---
 
-# 🐳 Docker
+# Docker
 
 Docker is used to package applications together with all required dependencies into lightweight, portable containers.
 
@@ -243,7 +243,7 @@ Key benefits include:
 
 ---
 
-# ☸️ Kubernetes
+# Kubernetes
 
 Kubernetes serves as the orchestration layer responsible for managing application deployments.
 
@@ -267,7 +267,7 @@ Core resources include:
 
 ---
 
-# 🚀 Deployment Strategy
+# Deployment Strategy
 
 PipelineX follows a **Rolling Update** deployment strategy.
 
@@ -302,7 +302,7 @@ This strategy enables:
 
 ---
 
-# 🔄 Rollback Strategy
+# Rollback Strategy
 
 Deployment failures are automatically handled through Kubernetes rollback mechanisms.
 
@@ -322,7 +322,7 @@ Benefits include:
 
 ---
 
-# 📊 Monitoring & Observability
+# Monitoring & Observability
 
 Operational visibility is achieved through an integrated monitoring stack.
 
@@ -350,7 +350,7 @@ Provides interactive dashboards for monitoring:
 
 ---
 
-# 🔐 Security Considerations
+# Security Considerations
 
 Current implementation includes:
 
@@ -369,7 +369,7 @@ Planned enhancements:
 
 ---
 
-# 📈 Future Enhancements
+# Future Enhancements
 
 PipelineX has been designed to support future enterprise capabilities including:
 
@@ -388,7 +388,7 @@ PipelineX has been designed to support future enterprise capabilities including:
 
 ---
 
-# ✨ Core Features
+# Core Features
 
 - End-to-End CI/CD Automation
 - Automated Build & Testing
@@ -403,7 +403,7 @@ PipelineX has been designed to support future enterprise capabilities including:
 
 ---
 
-# 📚 Learning Outcomes
+# Learning Outcomes
 
 PipelineX demonstrates practical implementation of:
 
@@ -421,6 +421,6 @@ PipelineX demonstrates practical implementation of:
 
 ---
 
-# 📄 License
+# License
 
 This project is intended for educational, portfolio, and demonstration purposes to showcase modern DevOps engineering practices and production-oriented CI/CD workflows.
