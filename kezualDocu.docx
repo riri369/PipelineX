@@ -1,0 +1,47 @@
+PipelineX/
+├── .gitignore
+├── docker-compose.yml
+├── app/
+│   ├── package.json
+│   ├── server.js
+│   ├── Dockerfile
+│   └── test/
+│       └── unit.test.js
+├── kubernetes/
+│   ├── namespace.yaml
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+├── jenkins/
+│   └── Jenkinsfile
+├── scripts/
+│   ├── health-check.sh
+│   └── cleanup.sh
+└── monitoring/
+    ├── prometheus.yaml
+    └── grafana-dashboard.json
+
+    PHASE1::
+    okay this aint gonna be your normal pipeline so stay tunned.
+    (check app/package.json, server.js, test/unit.tets.js)first of all the core appliction layer, gonna build a high performance microservice using Node.js. featuring native cloud health probes, structured json logging for elk compatibility and good termination handling to nsure zero downtime rolling upadates in kubernetes.
+    (app/Dockerfile)secondly the production grade multi stage dockerfile, heard about swelling of image size? google then. this impacts cold start performance in kubernetes and introduces security vulnerabilities. THE BUILD STAGE, uses a complete node.js footprint to compile dependencies and run test.
+    THE PROD RUNTIME STAGE, uses a secure hardened distroless or alpine base pulling over only production dependencies and compiled assests. it runs as a non privilege node user to adhere to the principle of least privilege. PLP.
+    (docker-compose.yml)lastly the local automation orchestrator, to spin up the prod enviornment locally within my 3gb wsl 2ram boundary lol BAHAHAHAHAHAH so we deploy a highly tuned infrastructure stack via docker compose. jenkins is further configured with explicit jvm limiters to prevent it form consuming all available memory. IKR im smart.
+
+    now some dumbfuck might ask me why did i choose a multi stage docker build over a standard single-stage execution??
+    so my dear, standard builds include compilers source utilities and development dependencies in the final image. this increases the attack surface and drastically inflates image size.
+    AND MY SOLUTION TO THIS IS multi stage build that divides the execution lifecycle into independent fuctional boundaries. source tetsing code and package management footprints remain inside transient layers, keeping the final production image lightweight fast to download and secure against runtime exploits.
+
+    ***the production containers enforce non root user isolation and uses strict memory/cpu constraints to safeguard the cluster against resource exploitation and container escape vulnerabilities.***
+
+    update on phase1 
+    PS C:\Users\nayak\OneDrive\Desktop\PipelineX\PipelineX> docker ps
+
+    CONTAINER ID   IMAGE                       COMMAND                  CREATED              STATUS              PORTS                                              NAMES
+    a580c2800aeb   jenkins/jenkins:lts-jdk17   "/usr/bin/tini -- /u…"   About a minute ago   Up About a minute   0.0.0.0:50000->50000/tcp, 0.0.0.0:8081->8080/tcp   pipelinex-jenkins-master
+
+
+    PS C:\Users\nayak\OneDrive\Desktop\PipelineX\PipelineX> docker stats --no-stream
+
+    CONTAINER ID   NAME                       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O        PIDS
+    a580c2800aeb   pipelinex-jenkins-master   0.18%     636.6MiB / 1.172GiB   53.05%    3.61MB / 74.6kB   2.47MB / 120MB   55
