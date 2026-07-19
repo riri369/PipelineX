@@ -45,3 +45,12 @@ PipelineX/
 
     CONTAINER ID   NAME                       CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O        PIDS
     a580c2800aeb   pipelinex-jenkins-master   0.18%     636.6MiB / 1.172GiB   53.05%    3.61MB / 74.6kB   2.47MB / 120MB   55
+
+    PHASE2 
+
+
+    update on phase2 last execution
+
+    PS C:\Users\nayak\OneDrive\Desktop\PipelineX\PipelineX> docker exec -it pipelinex-jenkins-master docker ps
+    CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS         PORTS                                              NAMES
+    96793bcfe719   pipelinex-jenkins   "/usr/bin/tini -- /u…"   3 minutes ago   Up 3 minutes   0.0.0.0:50000->50000/tcp, 0.0.0.0:8081->8080/tcp   pipelinex-jenkins-master
