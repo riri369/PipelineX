@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pipelinex-core-deployment
+  namespace: pipelinex-prod
+  labels:
+    app.kubernetes.io/name: pipelinex-core-service
+    app.kubernetes.io/part-of: pipelinex-platform
+spec:
+  # Maintain high availability locally by running 2 distinct parallel node replicas
+  replicas: 2
+  
+  # Rolling Update Strategy: Guarantees 100% Zero-Downtime deployments
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1       # Spin up exactly 1 new container block before destroying old ones
+      maxUnavailable: 0 # Never let an active replica go down during execution updates
+      
+  selector:
+    matchLabels:
+      app: pipelinex-core-pod
+      
+  template:
+    metadata:
+      labels:
+        app: pipelinex-core-pod
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: web-service-runtime
+        image: yourdockerhubusername/pipelinex-core-service:latest # Replace with your target tag
+        imagePullPolicy: IfNotPresent
+        
+        ports:
+        - containerPort: 8080
+          name: http-port
+          
+        # Hard Container Resource Safeguards to prevent memory-leak crashes
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "200m"
+            
+        # Liveness Verification Check: Tracks engine execution integrity
+        livenessProbe:
+          httpGet:
+            path: /healthz/liveness
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 2
+          failureThreshold: 3
+          
+        # Readiness Verification Check: Manages request routing availability
+        readinessProbe:
+          httpGet:
+            path: /healthz/readiness
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 2
+          
+        

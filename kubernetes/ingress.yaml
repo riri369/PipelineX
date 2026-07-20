@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pipelinex-layer7-ingress
+  namespace: pipelinex-prod
+  annotations:
+   
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: pipelinex.local # Local mock domain name lookup routing
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: pipelinex-core-internal-service
+            port:
+              number: 80
